@@ -10,8 +10,3 @@
 //
 // Usá la clase "card" para el contenedor.
 
-function TarjetaPelicula() {
-  return null // TODO: reemplazá esto con tu implementación
-}
-
-export default TarjetaPelicula

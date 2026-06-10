@@ -129,7 +129,6 @@ function App() {
 				<p style={{ color: '#555' }}>
 					Abrí <code>BotonIcono.jsx</code> — el botón no responde a clicks ni
 					se deshabilita porque las props extra no llegan al elemento nativo.
-					Completá el TODO.
 				</p>
 				<BotonIcono icono="💾" texto="Guardar" onClick={() => alert('¡Guardado!')} />
 				<BotonIcono icono="🗑️" texto="Eliminar" onClick={() => alert('Eliminado')} style={{ background: '#fef2f2', borderColor: '#fca5a5' }} />

@@ -5,6 +5,7 @@ import Bloque from './components/Bloque'
 import TarjetaCurso from './components/TarjetaCurso'
 import BotonIcono from './components/BotonIcono'
 import GrillaPeliculas from './components/GrillaPeliculas'
+import TarjetaPelicula from './components/TarjetaPelicula'
 
 const peliculas = [
 	{ id: 1, titulo: 'Interstellar', director: 'Christopher Nolan', duracion: 169, esEstreno: false, generos: ['Ciencia ficción', 'Drama', 'Aventura'], detalles: { clasificacion: 'ATP', idioma: 'Inglés' } },
@@ -12,9 +13,9 @@ const peliculas = [
 ]
 
 const anuncios = [
-	{ id: 1, titulo: 'Guitarra acústica', precio: 180, descripcion: 'Guitarra en buen estado, poco uso.' },
-	{ id: 2, titulo: 'Bicicleta de montaña', precio: 250, descripcion: 'Rodado 29, frenos hidráulicos.' },
-	{ id: 3, titulo: 'Mesa de madera', precio: 90, descripcion: 'Mesa de pino, 6 personas.' },
+	{ id: 1, titulo: 'Guitarra acústica', precio: 180, descripcion: 'Guitarra en buen estado, poco uso.', accion: 'IG' },
+	{ id: 2, titulo: 'Bicicleta de montaña', precio: 250, descripcion: 'Rodado 29, frenos hidráulicos.', accion: '' },
+	{ id: 3, titulo: 'Mesa de madera', precio: 90, descripcion: 'Mesa de pino, 6 personas.', accion: 'TW' },
 ]
 
 const cursos = [
@@ -37,6 +38,21 @@ function App() {
 		// TODO: mostrar alert con el título y el año de la película seleccionada
 	}
 
+	function funcionDesdeProp(accion) {
+		if (accion === 'IG') {
+			console.log("te muestro el ig")
+		} else if (accion === 'TW') {
+			console.log("te muestro el tw")
+		} else {
+			console.log("te muestro el numero de telefono")
+		}
+
+	}
+
+	function mostrarTodo() {
+		console.log("muestra todo")
+	}
+
 	return (
 		<main style={{ maxWidth: '720px', margin: '0 auto', padding: '24px', fontFamily: 'sans-serif' }}>
 			<h1>💪 Props — Desafíos</h1>
@@ -48,9 +64,13 @@ function App() {
 					Abrí <code>TarjetaPelicula.jsx</code> e implementá el componente para que
 					muestre toda la información de cada película.
 				</p>
-				{/* TODO: Usar componente y datos al inicio del archivo */}
-				<p>Tarjeta pelicula 1</p>
-				<p>Tarjeta pelicula 2</p>
+				{peliculas.map(pelicula =>
+					<TarjetaPelicula
+						key={pelicula.id}
+						pelicula={pelicula}
+					/>
+				)}
+
 			</section>
 
 			<hr />
@@ -78,14 +98,22 @@ function App() {
 					Abrí <code>TarjetaAnuncio.jsx</code> — tu tarea es hacer que al clickear
 					el botón, el padre pueda decidir qué ocurre.
 				</p>
-				{anuncios.map((a) => (
+				{anuncios.map((anuncio) => (
 					<TarjetaAnuncio
-						key={a.id}
-						titulo={a.titulo}
-						precio={a.precio}
-						descripcion={a.descripcion}
+						key={anuncio.id}
+						titulo={anuncio.titulo}
+						precio={anuncio.precio}
+						descripcion={anuncio.descripcion}
+						funcionDesdeProp={() => funcionDesdeProp(anuncio.accion)}
 					/>
 				))}
+
+				<TarjetaAnuncio
+					titulo="Cursos"
+					precio={50000}
+					descripcion="100 horas de cursada"
+					funcionDesdeProp={() => mostrarTodo()}
+				/>
 			</section>
 
 			<hr />
@@ -129,6 +157,7 @@ function App() {
 				<p style={{ color: '#555' }}>
 					Abrí <code>BotonIcono.jsx</code> — el botón no responde a clicks ni
 					se deshabilita porque las props extra no llegan al elemento nativo.
+					Completá el TODO.
 				</p>
 				<BotonIcono icono="💾" texto="Guardar" onClick={() => alert('¡Guardado!')} />
 				<BotonIcono icono="🗑️" texto="Eliminar" onClick={() => alert('Eliminado')} style={{ background: '#fef2f2', borderColor: '#fca5a5' }} />

@@ -6,6 +6,9 @@
 //
 // Debe mostrar el nombre como una etiqueta/badge con el color de fondo recibido.
 // Aplicale estilos para que se vea como una etiqueta:
+// <div style={{}}>
+//	Tecnología
+// </div>
 /* style={{
 		display: 'inline-block',
 		color: '#fff',
@@ -17,8 +20,25 @@
 		marginBottom: '6px',
 	  }} */
 
-function EtiquetaCategoria() {
-	return null // TODO: reemplazá esto con tu implementación
+function EtiquetaCategoria(props) {
+	const { nombre, color } = props
+	const mensajeDefault = 'Categoría - '
+
+	return (
+		<div style={{
+			display: 'inline-block',
+			color: '#fff',
+			backgroundColor: color,
+			padding: '3px 10px',
+			borderRadius: '999px',
+			fontSize: '0.8rem',
+			fontWeight: 'bold',
+			marginRight: '6px',
+			marginBottom: '6px',
+		}}>
+			{mensajeDefault + nombre}
+		</div>
+	)
 }
 
 export default EtiquetaCategoria

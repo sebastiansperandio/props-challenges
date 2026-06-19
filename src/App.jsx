@@ -6,6 +6,10 @@ import TarjetaCurso from './components/TarjetaCurso'
 import BotonIcono from './components/BotonIcono'
 import GrillaPeliculas from './components/GrillaPeliculas'
 import TarjetaPelicula from './components/TarjetaPelicula'
+import Buscador from './components/Buscador'
+import ConfirmacionAccion from './components/ConfirmacionAccion'
+import FormularioNuevaTarea from './components/FormularioNuevaTarea'
+import FilaLista from './components/FilaLista'
 
 const peliculas = [
 	{ id: 1, titulo: 'Interstellar', director: 'Christopher Nolan', duracion: 169, esEstreno: false, generos: ['Ciencia ficción', 'Drama', 'Aventura'], detalles: { clasificacion: 'ATP', idioma: 'Inglés' } },
@@ -50,7 +54,16 @@ function App() {
 	}
 
 	function mostrarTodo() {
-		console.log("muestra todo")
+		console.log('desde mostrar todoq')
+	}
+	function mostrarEsto() {
+		console.log('desde mostrar esto')
+	}
+
+
+	function handleGuardarTarea(nuevaTarea) {
+		console.log('El hijo envió esta tarea:', nuevaTarea)
+		alert(`Tarea lista para guardar: ${nuevaTarea.titulo}`)
 	}
 
 	return (
@@ -58,19 +71,24 @@ function App() {
 			<h1>💪 Props — Desafíos</h1>
 
 			{/* ── Desafío 1 ── */}
+			{/* 
+			const peliculas = [
+				{ id: 1, titulo: 'Interstellar', director: 'Christopher Nolan', duracion: 169, esEstreno: false, generos: ['Ciencia ficción', 'Drama', 'Aventura'], detalles: { clasificacion: 'ATP', idioma: 'Inglés' } },
+				{ id: 2, titulo: 'Alien: Romulus', director: 'Fede Álvarez', duracion: 119, esEstreno: true, generos: ['Terror', 'Ciencia ficción'], detalles: { clasificacion: '+16', idioma: 'Inglés' } },
+			]
+			*/}
 			<section>
 				<h2>Desafío 1 — Crear TarjetaPelicula (diferentes tipos de datos)</h2>
 				<p style={{ color: '#555' }}>
 					Abrí <code>TarjetaPelicula.jsx</code> e implementá el componente para que
 					muestre toda la información de cada película.
 				</p>
-				{peliculas.map(pelicula =>
+				{/* peliculas.map(pelicula =>
 					<TarjetaPelicula
 						key={pelicula.id}
 						pelicula={pelicula}
 					/>
-				)}
-
+				) */}
 			</section>
 
 			<hr />
@@ -82,10 +100,10 @@ function App() {
 					Abrí <code>EtiquetaCategoria.jsx</code> e implementá el componente
 					para que muestre el nombre como una etiqueta con el color de fondo recibido.
 				</p>
-				<EtiquetaCategoria nombre="Tecnología" color="#6366f1" />
+				{/* <EtiquetaCategoria nombre="Tecnología" color="#6366f1" />
 				<EtiquetaCategoria nombre="Diseño" color="#ec4899" />
 				<EtiquetaCategoria nombre="Negocios" color="#f97316" />
-				<EtiquetaCategoria nombre="Ciencia" color="#14b8a6" />
+				<EtiquetaCategoria nombre="Ciencia" color="#14b8a6" /> */}
 			</section>
 
 			<hr />
@@ -112,7 +130,52 @@ function App() {
 					titulo="Cursos"
 					precio={50000}
 					descripcion="100 horas de cursada"
-					funcionDesdeProp={() => mostrarTodo()}
+					funcionDesdeProp={() => console.log('otra funcion')}
+				/>
+
+
+			</section>
+
+			<hr />
+
+			{/* ── Desafío 3a ── */}
+			<section>
+				<h2>Desafío 3a — Pasar datos al padre</h2>
+				<p style={{ color: '#555' }}>
+					Abrí <code>Buscador.jsx</code> y hacé que al escribir en el input,
+					el componente llame a la función <code>onBuscar</code> pasando el texto ingresado.
+					Mirá la consola al escribir para ver si funciona.
+				</p>
+				<Buscador onBuscar={(texto) => console.log('Buscando:', texto)} />
+			</section>
+
+			<hr />
+
+			{/* ── Desafío 3b ── */}
+			<section>
+				<h2>Desafío 3b — Múltiples funciones</h2>
+				<p style={{ color: '#555' }}>
+					Abrí <code>ConfirmacionAccion.jsx</code> y asegurate de que ambos botones
+					ejecuten la función correcta pasada por prop (<code>onAceptar</code> y <code>onCancelar</code>).
+				</p>
+				<ConfirmacionAccion
+					accion="eliminar este archivo"
+					onAceptar={() => alert('¡Archivo eliminado!')}
+					onCancelar={() => alert('Operación cancelada.')}
+				/>
+			</section>
+
+			<hr />
+
+			{/* ── Desafío 3c ── */}
+			<section>
+				<h2>Desafío 3c — Pasar múltiples datos (Objeto)</h2>
+				<p style={{ color: '#555' }}>
+					Abrí <code>FormularioNuevaTarea.jsx</code>. Este componente tiene un formulario.
+					Tu tarea es armar un objeto con el título y la descripción ingresados, y pasárselo a la función <code>onGuardar</code>.
+				</p>
+				<FormularioNuevaTarea
+					onGuardar={handleGuardarTarea}
 				/>
 			</section>
 
@@ -126,7 +189,45 @@ function App() {
 					<code>titulo</code> y <code>children</code>. Usalo tres veces
 					con contenido diferente adentro de cada uno.
 				</p>
-				{/* TODO: usar <Bloque> tres veces con contenido diferente adentro */}
+				<Bloque
+					icono="😍"
+					titulo="Titulito"
+				>
+					<p>test</p>
+					<p>test</p>
+				</Bloque>
+				<Bloque
+					icono="😎"
+					titulo="Titulito2"
+				>
+				</Bloque>
+				<Bloque
+					icono="👀"
+					titulo="Titulito3"
+				>
+					<p>test</p>
+					<p>test</p>
+				</Bloque>
+			</section>
+
+			<hr />
+
+			{/* ── Desafío 4a ── */}
+			<section>
+				<h2>Desafío 4a — Inyectar acciones con children</h2>
+				<p style={{ color: '#555' }}>
+					Abrí <code>FilaLista.jsx</code>. Modificalo para que acepte <code>children</code> y lo renderice 
+					en el lado derecho. Luego, fíjate cómo acá en <code>App.jsx</code> le pasamos diferentes botones.
+				</p>
+				<div style={{ border: '1px solid #cbd5e1', borderRadius: '8px', background: 'white', overflow: 'hidden' }}>
+					<FilaLista titulo="Proyecto React" subtitulo="Actualizado hace 2 días">
+						<button style={{ padding: '6px 12px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Ver</button>
+						<button style={{ padding: '6px 12px', background: '#e2e8f0', color: '#334155', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Editar</button>
+					</FilaLista>
+					<FilaLista titulo="Presupuesto 2024.pdf" subtitulo="PDF • 2.4 MB">
+						<button style={{ padding: '6px 12px', background: '#10b981', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Descargar</button>
+					</FilaLista>
+				</div>
 			</section>
 
 			<hr />

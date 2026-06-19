@@ -7,6 +7,7 @@
 //      con el título del anuncio.
 
 function TarjetaAnuncio(props) {
+	console.log(props.funcionDesdeProp)
 	const { titulo, precio, descripcion, funcionDesdeProp } = props
 
 	return (

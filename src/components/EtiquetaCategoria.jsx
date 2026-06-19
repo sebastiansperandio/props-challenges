@@ -22,7 +22,6 @@
 
 function EtiquetaCategoria(props) {
 	const { nombre, color } = props
-	const mensajeDefault = 'Categoría - '
 
 	return (
 		<div style={{
@@ -36,7 +35,7 @@ function EtiquetaCategoria(props) {
 			marginRight: '6px',
 			marginBottom: '6px',
 		}}>
-			{mensajeDefault + nombre}
+			{nombre}
 		</div>
 	)
 }

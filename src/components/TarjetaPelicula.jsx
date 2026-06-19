@@ -10,6 +10,7 @@
 //
 // Usá la clase "card" para el contenedor.
 export default function TarjetaPelicula(props) {
+	console.log(props)
 	const pelicula = props.pelicula
 	const { titulo, director, duracion, esEstreno, generos, detalles } = pelicula
 	const { clasificacion, idioma } = detalles
